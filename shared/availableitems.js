@@ -1,38 +1,44 @@
-export const AVAILABLEITEMS= [
+export default [
     {
         id: 0,
-        image: 'assets/img/00-WhiteSideTable-1.jpg',
+        image: './assets/img/00-WhiteSideTable-1.jpg',
         name: 'Refinished Side Table',
         description: "Antiqued Side Table with teal drawer pulls.",
         price: "$79",
+        heading: "Furniture",
         featured: 'Yes'
     },
     {
         id: 1,
-        image: 'assets/img/01dadsgarage-1.jpg',
+        image: './assets/img/01dadsgarage-1.jpg',
         name: "Dad's Garage Sign",
         description: "Unique metal sign for Dad's garage. Great gift for Father's Day!",
-        price: "$49",                
+        price: "$49",    
+        heading: "Signs"            
     },
     {
         id: 2,
-        image: 'assets/img/02cabinet-1.jpg',
+        image: './assets/img/02cabinet-1.jpg',
         name: 'Vintage Spool Cabinet',
         description: "Vintage commercial spool cabinet has multiple drawers for storage.",
-        price: "$179",                    
+        price: "$179", 
+        heading: "Furniture",
+        featured: 'Yes'                   
     },
     {
         id: 3,
-        image: 'assets/img/03joutl-1.jpg',
+        image: './assets/img/03joutl-1.jpg',
         name: 'Joutl Wood Burning Stove',
         description: "A vintage Jotul 118 Wood Stove with Smoking compartment.",
-        price: "$449",                
+        price: "$449", 
+        heading: "Furniture"               
     },
     {
         id: 4,
-        image: 'assets/img/04schwinn-1.jpg',
+        image: '.assets/img/04schwinn-1.jpg',
         name: '1954 Schwinn Bike',
         description: "Vintage 1954 Schwinn 'Hollywood' Bike. All original parts. ",
-        price: "$189",                
+        price: "$189",
+        heading: "Bikes"                
     }
 ];

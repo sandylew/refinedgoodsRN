@@ -1,56 +1,64 @@
-import React, { Component } from 'react';
-import { View, Text, ScrollView } from 'react-native';
-import { Card } from 'react-native-elements';
-import { AVAILABLEITEMS } from '../shared/availableitems';
-// import { PROMOTIONS } from '../shared/promotions';
-// import { PARTNERS } from '../shared/partners';
+import React from 'react';
+import { StyleSheet, View, Dimensions } from 'react-native';
 
-function RenderItem({item}) {
-    if (item) {
-        return (
-            <Card
-                featuredTitle={item.name}
-                image={item.image}
-            >
-                <Text style={{margin: 10}}>
-                    {item.description}
-                </Text>
-            </Card>
-        );
-    }
-    return <View />;
+import FadingSlides from 'react-native-fading-slides';
+
+const { width, height } = Dimensions.get('window');
+
+const slides = [
+  {
+    image: require('../public/1.jpg'),
+    imageWidth: width - width * 0.2,
+    imageHeight: width - width * 0.2,
+    title: 'Refinished Side Table',
+    subtitle: "Antiqued Side Table with teal drawer pulls.",
+    price: "$79",
+    titleColor: '#000',
+    subtitleColor: 'brown',
+  },
+  {
+    image: require('../public/2.jpg'),
+    imageWidth: width - width * 0.2,
+    imageHeight: width - width * 0.2,
+    title: "Dad's Garage Sign",
+    subtitle: "Unique metal sign for Dad's garage.",
+    price: "$49",
+    titleColor: '#000',
+    subtitleColor: 'brown',
+  },
+  {
+    image: require('../public/3.jpg'),
+    imageWidth: width - width * 0.2,
+    imageHeight: width - width * 0.2,
+    title: "Vintage Spool Cabinet",
+    subtitle: "Vintage commercial spool cabinet.",
+    price: "$179",
+    titleColor: '#000',
+    subtitleColor: 'brown',
+  },
+];
+
+export default class Home extends React.Component {
+  render() {
+    return (
+      <View style={styles.container}>
+        <FadingSlides slides={slides} fadeDuration={200} stillDuration={2000} height={height} />
+      </View>
+    );
+  }
 }
 
-class Home extends Component {
+const styles = StyleSheet.create({
+  container: {
+    flex: .75,
+    justifyContent: 'center',
+    alignItems: 'center',
+    backgroundColor: 'white',
+  },
 
-    constructor(props) {
-        super(props);
-        this.state = {
-            availableitems: AVAILABLEITEMS,
-            // promotions: PROMOTIONS,
-            // partners: PARTNERS
-        };
-    }
-
-    static navigationOptions = {
-        title: 'Home'
-    }
-
-    render() {
-        return (
-            <ScrollView>
-                <RenderItem 
-                    item={this.state.availableitems.filter(availableitem => availableitem.featured)[0]}
-                />
-                {/* <RenderItem 
-                    item={this.state.promotions.filter(promotion => promotion.featured)[0]}
-                />
-                <RenderItem 
-                    item={this.state.partners.filter(partner => partner.featured)[0]}
-                /> */}
-            </ScrollView>
-        );
-    }
-}
-
-export default Home;
+  image: {
+    borderWidth: 3,
+    borderColor: "#20232a",
+    borderRadius: 6,
+  }
+});

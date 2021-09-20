@@ -1,45 +1,121 @@
 import React, { Component } from 'react';
-import { FlatList } from 'react-native';
-import { ListItem } from 'react-native-elements';
-import { AVAILABLEITEMS } from '../shared/availableitems';
+import { StyleSheet, Text, View, FlatList, Image, Dimensions } from 'react-native';
+import ListItem from './ListItemComponent';
 
+// const data = [
+//     {key: ('../assets/img/00-WhiteSideTable-1.jpg') }, { key: 'B' }, { key: 'C' }, { key: 'E' }, { key: 'F' }, {key: 'G' }
+// ];
+
+// const formatData = (data, numColumns) => {
+//     const numberOfFullRows = Math.floor(data.length / numColumns);
+
+//     let numberOfElementsLastRow = data.length - (numberOfFullRows * numColumns);
+//     while (numberOfElementsLastRow !== numColumns && numberOfElementsLastRow !== 0) {
+//         data.push({ key: `blank-${numberOfElementsLastRow}`, empty: true });
+//         numberOfElementsLastRow = numberOfElementsLastRow + 1;
+//     }
+
+//     return data;
+// };
+
+// const numColumns = 2;
+
+// export default class Shop extends Component {
+//     renderItem = ({ item, index }) => {
+//         if (item.empty === true) {
+//             return <View style={[styles.item, styles.itemInvisible]} />;
+//         }
+//         return (
+//             <View 
+//             style={styles.item}
+//             >
+//                 <Text style={styles.itemText}>{item.key}</Text>
+//                 <Image
+//                 style={{ width: 165, height: 165 }}
+//                 resizeMode="contain"
+//                 alignItems="center"
+//                 source={require('../assets/img/00-WhiteSideTable-1.jpg')}
+//                 />
+//                 <Text style= {{ margin: 10 }}></Text>
+//                 <Text style={{ fontSize: 14 }}>{item.text}</Text>
+//             </View>
+//         );
+//     };
+
+const ITEM_WIDTH = Dimensions.get('window').width
 class Shop extends Component {
-
-    constructor(props) {
-        super(props);
-        this.state = {
-            Availableitems: AVAILABLEITEMS
-        };
+    state= {
+        columns: 2
     }
-
-    static navigationOptions = {
-        title: 'Shop'
-    };
 
     render () {
-        const { navigate } = this.props.navigation;
-        const renderShopItem = ({item}) => {
-            return (
-                <ListItem
-                    title={item.name}
-                    subtitle={item.description}
-                    onPress={() => navigate('AvailableitemPage', { Id: item.id})}
-                    leftAvatar={{ source: require('../assets/img/00-WhiteSideTable-1.jpg')}}
-                />
-            );
-        };
-
+        const {columns} = this.state
         return (
-            <FlatList
-                data={this.state.availableitems}
-                renderItem={renderShopItem}
-                keyExtractor={item => item.id.toString()}
-            />
-        );
+            <View style={styles.container}>
+                <Text style={{ fontSize: 16, fontWeight: 'bold', textAlign: 'center' }}>Refined Goods</Text>
+                    <Text>Browse our available items!</Text>
+                <FlatList
+                numColumns={columns}
+                    data={[
+                        require("../assets/img/00-WhiteSideTable-1.jpg"),
+                        require("../assets/img/01dadsGarage-1.jpg"),
+                        require("../assets/img/02Cabinet-1.jpg"),
+                        require("../assets/img/03joutl-1.jpg"),
+                        require("../assets/img/04schwinn-1.jpg"),
+                        require("../assets/img/05bench-01.jpg"),
+                    ]}
+                    renderItem={({item}) => {
+                        return <ListItem itemWidth={ITEM_WIDTH/2} image={item}/>
+                    }}
+                    keyExtractor={
+                        (index)=>{return index}
+                    }
+                />                
+            </View>
+        )
     }
 }
+//             <FlatList
+//                 data={formatData(data, numColumns)}
+//                 style={styles.container}
+//                 renderItem={this.renderItem}
+//                 numColumns={numColumns}
+//             />
+//         );
+//     }
+// };
+
+const styles = StyleSheet.create({
+    container: {
+        flex: 1,
+        flexDirection: 'column',
+        justifyContent: 'center',
+        alignItems: 'center',
+        backgroundColor: '#F5FCFF',
+        marginVertical: 10,
+        marginHorizontal: 7,
+    },
+});
 
 export default Shop;
+
+
+    // item: {
+    //     backgroundColor: '#195640',
+    //     alignItems: 'center',
+    //     justifyContent: 'center',
+    //     flex: 1,
+    //     margin: 1,
+    //     height: Dimensions.get('window').width / numColumns
+    // },
+    // itemInvisible: {
+    //     backgroundColor: 'transparent',
+    // },
+    // itemText: {
+    //     color: '#fff',
+    // },
+    // });
+
 
 // import React from 'react';
 // import { Card, CardText, CardImg, CardImgOverlay, CardTitle, Breadcrumb, BreadcrumbItem } from 'reactstrap';
